@@ -20,7 +20,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
 
 body {
-  background-color: #eeeeee;
+  background-color: #fff;
   font-family: "Montserrat", sans-serif;
 }
 body,

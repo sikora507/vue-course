@@ -7,7 +7,7 @@
       <ul>
         <li v-for="(todo, index) in thingsToDo" :key="index">
             {{todo}}
-            <a class="remove-button" @click="function(){removeTodo(todo);}"></a>
+            <a class="remove-button" @click="() => removeTodo(todo)"></a>
         </li>
       </ul>
     </div>
@@ -61,6 +61,7 @@ ul li:hover a {
 
 .container {
   box-shadow: 0px 0px 40px lightgray;
+  width: 50%;
 }
 input {
   width: calc(100% - 40px);
