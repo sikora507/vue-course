@@ -9,7 +9,7 @@
           v-for="(todo, index) in todos"
           :key="index"
           :data="todo"
-          v-on:removeTodo="removeTodo"
+          @removeTodo="removeTodo"
         />
       </ul>
     </div>
