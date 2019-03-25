@@ -1,13 +1,14 @@
 <template>
-    <li>
-        {{data.title}}
-        <a class="remove-button" @click="$emit('removeTodo', data)"></a>
-    </li>
+  <li>
+    <input type="checkbox" v-model="data.completed" />
+    {{data.title}}
+    <a class="remove-button" @click="$emit('removeTodo', data)"></a>
+  </li>
 </template>
 <script>
 export default {
-    props: ['data']
-}
+  props: ["data"]
+};
 </script>
 <style scoped>
 ul li {

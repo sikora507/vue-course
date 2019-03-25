@@ -2,15 +2,11 @@
   <div class="container">
     <div class="holder">
       <form @submit.prevent="addTodo">
-        <input type="text" placeholder="Enter new TODO item..." v-model="newTodo" name="newTodo">
+        <input type="text" placeholder="Enter new TODO item..." v-model="newTodo" name="item" v-validate="'min:5'">
+        <p class="alert" v-if="errors.has('item')">{{errors.first('item')}}</p>
       </form>
       <ul>
-        <Todo
-          v-for="(todo, index) in todos"
-          :key="index"
-          :data="todo"
-          @removeTodo="removeTodo"
-        />
+        <Todo v-for="(todo, index) in todos" :key="index" :data="todo" @removeTodo="removeTodo"/>
       </ul>
     </div>
   </div>
@@ -34,8 +30,12 @@ export default {
   },
   methods: {
     addTodo() {
-      this.todos.push({ completed: false, title: this.newTodo });
-      this.newTodo = "";
+      this.$validator.validateAll().then((result) => {
+        if(result){
+          this.todos.push({ completed: false, title: this.newTodo });
+          this.newTodo = "";
+        }
+      });
     },
     removeTodo(todo) {
       this.todos = this.todos.filter(x => x != todo);
@@ -66,5 +66,12 @@ input {
   font-size: 1.3em;
   background-color: #323333;
   color: #687f7f;
+}
+.alert{
+  background: #fdf2ce;
+  font-weight: bold;
+  display: inline-block;
+  padding: 5px;
+  margin-top: -20px;
 }
 </style>
